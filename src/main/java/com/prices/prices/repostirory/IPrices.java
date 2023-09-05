@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IPrices extends JpaRepository<Prices, Long> {
-    Optional<Prices> findByStartDateAndEndDate(Date startDate, Date endDate);
 
     Optional<Prices> findById(Long id);
 
