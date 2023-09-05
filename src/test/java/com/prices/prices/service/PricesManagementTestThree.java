@@ -26,7 +26,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RequiredArgsConstructor
-public class PricesManagementTest {
+public class PricesManagementTestThree {
+
 
     @Mock
     private IPrices pricesRepository;
@@ -37,7 +38,7 @@ public class PricesManagementTest {
 
     @ParameterizedTest
     @MethodSource("provideParameters")
-    public void testFindProduct2(Date date, Long product, Long brand) throws ParseException {
+    public void testFindProduct3(Date date, Long product, Long brand) throws ParseException {
         String pattern = "yyyy-MM-dd-HH.mm.ss";
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 
@@ -82,10 +83,10 @@ public class PricesManagementTest {
                 .brand(PricesBrand.builder().id(1L).build())
                 .build();
 
-        when(pricesRepository.findProduct(any(), anyLong(), anyLong())).thenReturn(List.of(expect, expect2, expect3, expect4));
+        when(pricesRepository.findProduct(any(), anyLong(), anyLong())).thenReturn(List.of(expect,expect2,expect3,expect4));
         PricesDTO result = service.findProduct(date, product, brand);
 
-        assertThat(result.getPrice()).isEqualTo(expect2.getPrice());
+        assertThat(result.getPrice()).isIn(expect2.getPrice());
     }
 
     private static Stream<Arguments> provideParameters() throws ParseException {
@@ -94,13 +95,11 @@ public class PricesManagementTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 
         return Stream.of(
-                Arguments.of(dateFormat.parse("2020-06-14-10.00.00"), 35455L, 1L),
-                Arguments.of(dateFormat.parse("2020-06-14-16.00.00"), 35455L, 1L),
-                Arguments.of(dateFormat.parse(" 2020-06-14-21.00.00"), 35455L, 1L),
-                Arguments.of(dateFormat.parse("2020-06-15-10.00.00"), 35455L, 1L),
-                Arguments.of(dateFormat.parse("2020-06-16-21.00.00"), 35455L, 1L)//expect4
+
+                Arguments.of(dateFormat.parse("2020-06-14-21.00.00"), 35455L, 1L)
         );
     }
 
 
 }
+

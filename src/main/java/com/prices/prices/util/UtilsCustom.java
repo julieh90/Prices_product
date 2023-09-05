@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 @Component
 public class UtilsCustom {
     String pattern = "yyyy-MM-dd-HH.mm.ss";

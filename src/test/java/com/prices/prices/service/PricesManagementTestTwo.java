@@ -83,7 +83,7 @@ public class PricesManagementTestTwo {
                 .brand(PricesBrand.builder().id(1L).build())
                 .build();
 
-        when(pricesRepository.findProduct(any(), anyLong(), anyLong())).thenReturn(List.of(expect2));
+        when(pricesRepository.findProduct(any(), anyLong(), anyLong())).thenReturn(List.of(expect,expect2,expect3,expect4));
         PricesDTO result = service.findProduct(date, product, brand);
 
         assertThat(result.getPrice()).isEqualTo(expect2.getPrice());

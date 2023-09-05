@@ -24,7 +24,6 @@ public class PricesManagement implements IPricesManagement {
     private final IPrices pricesRepository;
 
 
-
     @Override
     public PricesDTO findProduct(Date startDate, Long productId, Long brandId) {
 
